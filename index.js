@@ -189,11 +189,17 @@
             togglePicker();
         });
         
-        // Touch support for mobile
+        // Touch support for mobile - use touchstart for immediate response
+        button.addEventListener('touchstart', (e) => {
+            console.log(`[${MODULE_NAME}] Button touchstart!`);
+            button.style.background = 'lime'; // Visual debug
+        });
+        
         button.addEventListener('touchend', (e) => {
             e.preventDefault();
             e.stopPropagation();
-            console.log(`[${MODULE_NAME}] Button touched!`);
+            console.log(`[${MODULE_NAME}] Button touchend!`);
+            button.style.background = ''; // Reset
             togglePicker();
         });
         

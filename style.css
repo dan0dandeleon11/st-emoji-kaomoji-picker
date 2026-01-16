@@ -3,24 +3,35 @@
 /* Picker Button */
 #dan_emoji_picker_btn.dan-picker-btn,
 .dan-picker-btn {
-    display: flex;
+    display: flex !important;
     align-items: center;
     justify-content: center;
-    width: 35px;
-    height: 35px;
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    min-height: 40px;
     margin-right: 5px;
     border-radius: 4px;
     cursor: pointer;
-    font-size: 18px;
+    font-size: 20px;
     color: var(--SmartThemeBodyColor, #ccc);
-    background: transparent;
+    background: rgba(100, 100, 100, 0.3);
     transition: all 0.2s ease;
-    opacity: 0.7;
+    opacity: 1;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0.3);
+    user-select: none;
+    -webkit-user-select: none;
+    position: relative;
+    z-index: 100;
+    pointer-events: auto !important;
 }
 
-.dan-picker-btn:hover {
+.dan-picker-btn:hover,
+.dan-picker-btn:active {
     opacity: 1;
-    background: var(--SmartThemeBlurTintColor, rgba(255,255,255,0.1));
+    background: rgba(150, 150, 150, 0.5) !important;
+    transform: scale(1.1);
 }
 
 /* Picker Popup */
