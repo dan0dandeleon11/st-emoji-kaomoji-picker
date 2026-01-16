@@ -1,0 +1,379 @@
+/* Lei's Emoji & Kaomoji Picker Styles */
+
+/* Picker Button */
+.lei-picker-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 35px;
+    margin-right: 5px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 18px;
+    color: var(--SmartThemeBodyColor, #ccc);
+    background: transparent;
+    transition: all 0.2s ease;
+    opacity: 0.7;
+}
+
+.lei-picker-btn:hover {
+    opacity: 1;
+    background: var(--SmartThemeBlurTintColor, rgba(255,255,255,0.1));
+}
+
+/* Picker Popup */
+.lei-picker-popup {
+    position: fixed;
+    width: 380px;
+    max-height: 500px;
+    background: var(--SmartThemeBlurTintColor, #1a1a1a);
+    border: 1px solid var(--SmartThemeBorderColor, #444);
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    z-index: 10000;
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.lei-picker-popup.visible {
+    display: flex;
+}
+
+/* Header */
+.lei-picker-header {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    background: var(--SmartThemeBlurTintColor, #252525);
+    border-bottom: 1px solid var(--SmartThemeBorderColor, #444);
+}
+
+.lei-picker-tabs {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 8px;
+}
+
+.lei-tab {
+    flex: 1;
+    padding: 8px 12px;
+    border: none;
+    background: var(--SmartThemeBlurTintColor, #333);
+    color: var(--SmartThemeBodyColor, #ccc);
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: all 0.2s;
+}
+
+.lei-tab:hover {
+    background: var(--SmartThemeBlurTintColor, #444);
+}
+
+.lei-tab.active {
+    background: var(--SmartThemeQuoteColor, #5865F2);
+    color: white;
+}
+
+.lei-picker-search {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid var(--SmartThemeBorderColor, #444);
+    background: var(--SmartThemeBlurTintColor, #2a2a2a);
+    color: var(--SmartThemeBodyColor, #e0e0e0);
+    border-radius: 4px;
+    font-size: 13px;
+    box-sizing: border-box;
+}
+
+.lei-picker-search:focus {
+    outline: none;
+    border-color: var(--SmartThemeQuoteColor, #5865F2);
+}
+
+.lei-picker-search::placeholder {
+    color: var(--SmartThemeBodyColor, #888);
+    opacity: 0.6;
+}
+
+/* Categories */
+.lei-picker-categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    padding: 8px 10px;
+    background: var(--SmartThemeBlurTintColor, #222);
+    border-bottom: 1px solid var(--SmartThemeBorderColor, #444);
+    max-height: 80px;
+    overflow-y: auto;
+}
+
+.lei-picker-categories.hidden {
+    display: none;
+}
+
+.lei-cat-btn {
+    padding: 4px 10px;
+    border: none;
+    background: var(--SmartThemeBlurTintColor, #333);
+    color: var(--SmartThemeBodyColor, #aaa);
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 11px;
+    text-transform: capitalize;
+    transition: all 0.2s;
+}
+
+.lei-cat-btn:hover {
+    background: var(--SmartThemeBlurTintColor, #444);
+    color: var(--SmartThemeBodyColor, #fff);
+}
+
+.lei-cat-btn.active {
+    background: var(--SmartThemeQuoteColor, #5865F2);
+    color: white;
+}
+
+/* Custom category styling */
+.lei-cat-btn.custom-cat {
+    border: 1px dashed var(--SmartThemeBorderColor, #666);
+    position: relative;
+}
+
+.lei-cat-btn.custom-cat:hover::after {
+    content: '(right-click to delete)';
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 9px;
+    color: #888;
+    white-space: nowrap;
+    background: #1a1a1a;
+    padding: 2px 4px;
+    border-radius: 3px;
+    z-index: 10;
+}
+
+/* Kaomoji Controls */
+.lei-kaomoji-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 8px 10px;
+    background: var(--SmartThemeBlurTintColor, #222);
+    border-bottom: 1px solid var(--SmartThemeBorderColor, #444);
+}
+
+.lei-kaomoji-controls.hidden {
+    display: none;
+}
+
+.lei-add-btn,
+.lei-add-cat-btn {
+    padding: 5px 10px;
+    border: none;
+    background: #4a7a4a;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 11px;
+    transition: all 0.2s;
+}
+
+.lei-add-btn:hover,
+.lei-add-cat-btn:hover {
+    background: #5a9a5a;
+}
+
+.lei-add-cat-btn {
+    background: #4a6a8a;
+}
+
+.lei-add-cat-btn:hover {
+    background: #5a7a9a;
+}
+
+.lei-delete-toggle {
+    padding: 5px 10px;
+    border: none;
+    background: #7a4a4a;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 11px;
+    transition: all 0.2s;
+    margin-left: auto;
+}
+
+.lei-delete-toggle:hover {
+    background: #9a5a5a;
+}
+
+.lei-delete-toggle.active {
+    background: #aa4a4a;
+    box-shadow: 0 0 0 2px #ff6666;
+}
+
+/* Add Forms */
+.lei-add-form,
+.lei-add-cat-form {
+    padding: 10px;
+    background: var(--SmartThemeBlurTintColor, #252525);
+    border-bottom: 1px solid var(--SmartThemeBorderColor, #444);
+}
+
+.lei-add-form.hidden,
+.lei-add-cat-form.hidden {
+    display: none;
+}
+
+.lei-add-form input,
+.lei-add-form select,
+.lei-add-cat-form input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 8px;
+    border: 1px solid var(--SmartThemeBorderColor, #444);
+    background: var(--SmartThemeBlurTintColor, #2a2a2a);
+    color: var(--SmartThemeBodyColor, #e0e0e0);
+    border-radius: 4px;
+    font-size: 13px;
+    box-sizing: border-box;
+}
+
+.lei-form-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.lei-save-btn,
+.lei-cancel-btn {
+    flex: 1;
+    padding: 6px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: all 0.2s;
+}
+
+.lei-save-btn {
+    background: #4a7a4a;
+    color: white;
+}
+
+.lei-save-btn:hover {
+    background: #5a9a5a;
+}
+
+.lei-cancel-btn {
+    background: #7a4a4a;
+    color: white;
+}
+
+.lei-cancel-btn:hover {
+    background: #9a5a5a;
+}
+
+/* Grid */
+.lei-picker-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
+    gap: 4px;
+    padding: 10px;
+    max-height: 250px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.lei-picker-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 4px;
+    background: var(--SmartThemeBlurTintColor, #2a2a2a);
+    border: 1px solid transparent;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.15s;
+    min-height: 32px;
+}
+
+.lei-picker-item.emoji {
+    font-size: 22px;
+}
+
+.lei-picker-item.kaomoji {
+    font-size: 11px;
+    padding: 6px 2px;
+    word-break: keep-all;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.lei-picker-item:hover {
+    background: var(--SmartThemeBlurTintColor, #3a3a3a);
+    transform: scale(1.1);
+    border-color: var(--SmartThemeQuoteColor, #5865F2);
+}
+
+/* Delete mode */
+.lei-picker-grid.delete-mode .lei-picker-item {
+    position: relative;
+}
+
+.lei-picker-grid.delete-mode .lei-picker-item:hover {
+    background: rgba(170, 74, 74, 0.3);
+    border-color: #ff4444;
+}
+
+.lei-picker-grid.delete-mode .lei-picker-item:hover::after {
+    content: '×';
+    position: absolute;
+    top: -2px;
+    right: 2px;
+    color: #ff4444;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* Empty state */
+.lei-picker-empty {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 20px;
+    color: var(--SmartThemeBodyColor, #888);
+    font-size: 13px;
+    font-style: italic;
+}
+
+/* Scrollbar */
+.lei-picker-grid::-webkit-scrollbar,
+.lei-picker-categories::-webkit-scrollbar {
+    width: 8px;
+}
+
+.lei-picker-grid::-webkit-scrollbar-track,
+.lei-picker-categories::-webkit-scrollbar-track {
+    background: var(--SmartThemeBlurTintColor, #1a1a1a);
+}
+
+.lei-picker-grid::-webkit-scrollbar-thumb,
+.lei-picker-categories::-webkit-scrollbar-thumb {
+    background: var(--SmartThemeBorderColor, #444);
+    border-radius: 4px;
+}
+
+.lei-picker-grid::-webkit-scrollbar-thumb:hover,
+.lei-picker-categories::-webkit-scrollbar-thumb:hover {
+    background: var(--SmartThemeBodyColor, #666);
+}
+
+/* Make kaomoji grid wider */
+.lei-picker-popup:has(.lei-picker-item.kaomoji) .lei-picker-grid {
+    grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+}

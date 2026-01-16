@@ -1,0 +1,12 @@
+{
+    "display_name": "Lei's Emoji & Kaomoji Picker",
+    "loading_order": 100,
+    "requires": [],
+    "optional": [],
+    "js": "index.js",
+    "css": "style.css",
+    "author": "Dan",
+    "version": "1.0.0",
+    "homePage": "https://github.com/dan0dandeleon11/st-emoji-kaomoji-picker",
+    "auto_update": true
+}
