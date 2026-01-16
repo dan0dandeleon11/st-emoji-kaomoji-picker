@@ -183,7 +183,17 @@
         }
         
         button.addEventListener('click', (e) => {
+            e.preventDefault();
             e.stopPropagation();
+            console.log(`[${MODULE_NAME}] Button clicked!`);
+            togglePicker();
+        });
+        
+        // Touch support for mobile
+        button.addEventListener('touchend', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            console.log(`[${MODULE_NAME}] Button touched!`);
             togglePicker();
         });
         
@@ -505,21 +515,34 @@
         
         const rect = button.getBoundingClientRect();
         console.log(`[${MODULE_NAME}] Button rect:`, rect);
+        console.log(`[${MODULE_NAME}] Window size:`, window.innerWidth, 'x', window.innerHeight);
         
-        // Position popup above button
-        const bottomPos = window.innerHeight - rect.top + 10;
-        const rightPos = window.innerWidth - rect.right;
+        // Check if mobile (narrow screen)
+        const isMobile = window.innerWidth <= 500;
         
-        console.log(`[${MODULE_NAME}] Positioning: bottom=${bottomPos}px, right=${rightPos}px`);
-        
-        popup.style.bottom = `${bottomPos}px`;
-        popup.style.right = `${rightPos}px`;
+        if (isMobile) {
+            // Mobile: center horizontally, position above input area
+            popup.style.bottom = '70px';
+            popup.style.left = '10px';
+            popup.style.right = '10px';
+            console.log(`[${MODULE_NAME}] Mobile positioning applied`);
+        } else {
+            // Desktop: position relative to button
+            const bottomPos = window.innerHeight - rect.top + 10;
+            const rightPos = window.innerWidth - rect.right;
+            
+            console.log(`[${MODULE_NAME}] Positioning: bottom=${bottomPos}px, right=${rightPos}px`);
+            
+            popup.style.bottom = `${bottomPos}px`;
+            popup.style.right = `${rightPos}px`;
+            popup.style.left = 'auto';
+        }
         
         popup.classList.add('visible');
         pickerVisible = true;
         
         console.log(`[${MODULE_NAME}] Popup classes:`, popup.className);
-        console.log(`[${MODULE_NAME}] Popup display:`, window.getComputedStyle(popup).display);
+        console.log(`[${MODULE_NAME}] Popup computed style display:`, window.getComputedStyle(popup).display);
         
         renderGrid();
     }
