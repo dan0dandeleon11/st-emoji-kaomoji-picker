@@ -519,36 +519,28 @@
             return;
         }
         
-        const rect = button.getBoundingClientRect();
-        console.log(`[${MODULE_NAME}] Button rect:`, rect);
-        console.log(`[${MODULE_NAME}] Window size:`, window.innerWidth, 'x', window.innerHeight);
-        
-        // Check if mobile (narrow screen)
-        const isMobile = window.innerWidth <= 500;
-        
-        if (isMobile) {
-            // Mobile: center horizontally, position above input area
-            popup.style.bottom = '70px';
-            popup.style.left = '10px';
-            popup.style.right = '10px';
-            console.log(`[${MODULE_NAME}] Mobile positioning applied`);
-        } else {
-            // Desktop: position relative to button
-            const bottomPos = window.innerHeight - rect.top + 10;
-            const rightPos = window.innerWidth - rect.right;
-            
-            console.log(`[${MODULE_NAME}] Positioning: bottom=${bottomPos}px, right=${rightPos}px`);
-            
-            popup.style.bottom = `${bottomPos}px`;
-            popup.style.right = `${rightPos}px`;
-            popup.style.left = 'auto';
-        }
+        // Force show with inline styles that override everything
+        popup.style.cssText = `
+            display: flex !important;
+            position: fixed !important;
+            bottom: 80px !important;
+            left: 10px !important;
+            right: 10px !important;
+            width: auto !important;
+            max-width: 95vw !important;
+            max-height: 70vh !important;
+            z-index: 999999 !important;
+            background: #1a1a1a !important;
+            border: 2px solid #5865F2 !important;
+            border-radius: 8px !important;
+            flex-direction: column !important;
+            overflow: hidden !important;
+        `;
         
         popup.classList.add('visible');
         pickerVisible = true;
         
-        console.log(`[${MODULE_NAME}] Popup classes:`, popup.className);
-        console.log(`[${MODULE_NAME}] Popup computed style display:`, window.getComputedStyle(popup).display);
+        console.log(`[${MODULE_NAME}] Popup should be visible now`);
         
         renderGrid();
     }
@@ -557,6 +549,7 @@
         const popup = document.getElementById('dan_emoji_picker_popup');
         if (popup) {
             popup.classList.remove('visible');
+            popup.style.cssText = ''; // Clear inline styles
         }
         pickerVisible = false;
         deleteMode = false;
