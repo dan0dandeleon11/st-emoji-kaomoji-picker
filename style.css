@@ -1,6 +1,7 @@
 /* Dan's Emoji & Kaomoji Picker Styles */
 
 /* Picker Button */
+#dan_emoji_picker_btn.dan-picker-btn,
 .dan-picker-btn {
     display: flex;
     align-items: center;
@@ -376,4 +377,29 @@
 /* Make kaomoji grid wider */
 .dan-picker-popup:has(.dan-picker-item.kaomoji) .dan-picker-grid {
     grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+}
+
+/* Mobile Responsive */
+@media screen and (max-width: 500px) {
+    .dan-picker-popup {
+        width: calc(100vw - 20px);
+        max-width: 380px;
+        left: 10px;
+        right: 10px !important;
+        bottom: 60px !important;
+        max-height: 60vh;
+    }
+    
+    .dan-picker-grid {
+        max-height: 35vh;
+    }
+    
+    .dan-picker-item.kaomoji {
+        font-size: 10px;
+    }
+    
+    .dan-cat-btn {
+        padding: 3px 8px;
+        font-size: 10px;
+    }
 }
