@@ -483,6 +483,7 @@
 
     // Toggle picker
     function togglePicker() {
+        console.log(`[${MODULE_NAME}] togglePicker called, pickerVisible: ${pickerVisible}`);
         if (pickerVisible) {
             hidePicker();
         } else {
@@ -491,17 +492,35 @@
     }
 
     function showPicker() {
+        console.log(`[${MODULE_NAME}] showPicker called`);
         const popup = document.getElementById('dan_emoji_picker_popup');
         const button = document.getElementById('dan_emoji_picker_btn');
         
-        if (!popup || !button) return;
+        console.log(`[${MODULE_NAME}] popup:`, popup, 'button:', button);
+        
+        if (!popup || !button) {
+            console.error(`[${MODULE_NAME}] Missing elements!`);
+            return;
+        }
         
         const rect = button.getBoundingClientRect();
-        popup.style.bottom = `${window.innerHeight - rect.top + 10}px`;
-        popup.style.right = `${window.innerWidth - rect.right}px`;
+        console.log(`[${MODULE_NAME}] Button rect:`, rect);
+        
+        // Position popup above button
+        const bottomPos = window.innerHeight - rect.top + 10;
+        const rightPos = window.innerWidth - rect.right;
+        
+        console.log(`[${MODULE_NAME}] Positioning: bottom=${bottomPos}px, right=${rightPos}px`);
+        
+        popup.style.bottom = `${bottomPos}px`;
+        popup.style.right = `${rightPos}px`;
         
         popup.classList.add('visible');
         pickerVisible = true;
+        
+        console.log(`[${MODULE_NAME}] Popup classes:`, popup.className);
+        console.log(`[${MODULE_NAME}] Popup display:`, window.getComputedStyle(popup).display);
+        
         renderGrid();
     }
 
