@@ -200,6 +200,18 @@
             e.stopPropagation();
             console.log(`[${MODULE_NAME}] Button touchend!`);
             button.style.background = ''; // Reset
+            
+            // DEBUG: Create a test div to prove code is running
+            let testDiv = document.getElementById('dan_test_debug');
+            if (!testDiv) {
+                testDiv = document.createElement('div');
+                testDiv.id = 'dan_test_debug';
+                testDiv.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:red;color:white;padding:20px;z-index:9999999;font-size:20px;';
+                testDiv.textContent = 'TOUCH WORKED!';
+                document.body.appendChild(testDiv);
+                setTimeout(() => testDiv.remove(), 2000);
+            }
+            
             togglePicker();
         });
         
