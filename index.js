@@ -200,18 +200,6 @@
             e.stopPropagation();
             console.log(`[${MODULE_NAME}] Button touchend!`);
             button.style.background = ''; // Reset
-            
-            // DEBUG: Create a test div to prove code is running
-            let testDiv = document.getElementById('dan_test_debug');
-            if (!testDiv) {
-                testDiv = document.createElement('div');
-                testDiv.id = 'dan_test_debug';
-                testDiv.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:red;color:white;padding:20px;z-index:9999999;font-size:20px;';
-                testDiv.textContent = 'TOUCH WORKED!';
-                document.body.appendChild(testDiv);
-                setTimeout(() => testDiv.remove(), 2000);
-            }
-            
             togglePicker();
         });
         
@@ -531,16 +519,17 @@
             return;
         }
         
-        // Force show with inline styles that override everything
+        // Force show with inline styles - use TOP positioning for mobile
         popup.style.cssText = `
             display: flex !important;
             position: fixed !important;
-            bottom: 80px !important;
+            top: 10px !important;
             left: 10px !important;
             right: 10px !important;
+            bottom: auto !important;
             width: auto !important;
             max-width: 95vw !important;
-            max-height: 70vh !important;
+            max-height: 60vh !important;
             z-index: 999999 !important;
             background: #1a1a1a !important;
             border: 2px solid #5865F2 !important;
