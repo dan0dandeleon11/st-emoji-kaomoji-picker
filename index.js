@@ -185,21 +185,13 @@
         button.addEventListener('click', (e) => {
             e.preventDefault();
             e.stopPropagation();
-            console.log(`[${MODULE_NAME}] Button clicked!`);
             togglePicker();
         });
         
-        // Touch support for mobile - use touchstart for immediate response
-        button.addEventListener('touchstart', (e) => {
-            console.log(`[${MODULE_NAME}] Button touchstart!`);
-            button.style.background = 'lime'; // Visual debug
-        });
-        
+        // Touch support for mobile
         button.addEventListener('touchend', (e) => {
             e.preventDefault();
             e.stopPropagation();
-            console.log(`[${MODULE_NAME}] Button touchend!`);
-            button.style.background = ''; // Reset
             togglePicker();
         });
         
@@ -499,7 +491,6 @@
 
     // Toggle picker
     function togglePicker() {
-        console.log(`[${MODULE_NAME}] togglePicker called, pickerVisible: ${pickerVisible}`);
         if (pickerVisible) {
             hidePicker();
         } else {
@@ -508,41 +499,52 @@
     }
 
     function showPicker() {
-        console.log(`[${MODULE_NAME}] showPicker called`);
         const popup = document.getElementById('dan_emoji_picker_popup');
         const button = document.getElementById('dan_emoji_picker_btn');
         
-        console.log(`[${MODULE_NAME}] popup:`, popup, 'button:', button);
+        if (!popup || !button) return;
         
-        if (!popup || !button) {
-            console.error(`[${MODULE_NAME}] Missing elements!`);
-            return;
+        const isMobile = window.innerWidth <= 600;
+        
+        if (isMobile) {
+            // Mobile: position at top of screen
+            popup.style.cssText = `
+                display: flex !important;
+                position: fixed !important;
+                top: 10px !important;
+                left: 10px !important;
+                right: 10px !important;
+                bottom: auto !important;
+                width: auto !important;
+                max-height: 60vh !important;
+                z-index: 999999 !important;
+                background: #1a1a1a !important;
+                border: 2px solid #5865F2 !important;
+                border-radius: 8px !important;
+                flex-direction: column !important;
+                overflow: hidden !important;
+            `;
+        } else {
+            // Desktop: position above button
+            const rect = button.getBoundingClientRect();
+            popup.style.cssText = `
+                display: flex !important;
+                position: fixed !important;
+                bottom: ${window.innerHeight - rect.top + 10}px !important;
+                right: ${window.innerWidth - rect.right}px !important;
+                width: 380px !important;
+                max-height: 500px !important;
+                z-index: 999999 !important;
+                background: #1a1a1a !important;
+                border: 1px solid #444 !important;
+                border-radius: 8px !important;
+                flex-direction: column !important;
+                overflow: hidden !important;
+            `;
         }
-        
-        // Force show with inline styles - use TOP positioning for mobile
-        popup.style.cssText = `
-            display: flex !important;
-            position: fixed !important;
-            top: 10px !important;
-            left: 10px !important;
-            right: 10px !important;
-            bottom: auto !important;
-            width: auto !important;
-            max-width: 95vw !important;
-            max-height: 60vh !important;
-            z-index: 999999 !important;
-            background: #1a1a1a !important;
-            border: 2px solid #5865F2 !important;
-            border-radius: 8px !important;
-            flex-direction: column !important;
-            overflow: hidden !important;
-        `;
         
         popup.classList.add('visible');
         pickerVisible = true;
-        
-        console.log(`[${MODULE_NAME}] Popup should be visible now`);
-        
         renderGrid();
     }
 
